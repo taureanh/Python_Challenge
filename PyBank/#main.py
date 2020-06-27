@@ -26,19 +26,18 @@ with open(csvpath) as csvfile:
     
     #print(f"Header: {csv_header}")               
 
-#Calculate number of months and revenue 
+#Calculate number of months and revenue using loop
        
     for row in csvreader:
         month.append(row[0])
         revenue.append(row[1])
     
     #print(len(month))
- #Revenue 
     revenue_int = map(int,revenue)
     total_revenue = (sum(revenue_int))
     #print(total_revenue)
 
- #Calculate number of months and revenue  
+ #Calculate average changes using loop
 i = 0
 for i in range(len(revenue) - 1):
     profit_loss = int(revenue[i+1]) - int(revenue[i])
@@ -66,18 +65,22 @@ for i in range(len(revenue) - 1):
 
 #Print out final summary
 
-print('Financial Analysis')
+f = open("Financial Analysis", "w")
 
-print('----------------------------')
+print('Financial Analysis', file = f )
+
+print('----------------------------', file = f )
 
 
-print("Total number of months: " + str(len(month)))
+print("Total number of months: " + str(len(month)), file = f )
 
-print("Total Revenue in period: $ " + str(total_revenue))
+print("Total Revenue in period: $ " + str(total_revenue), file = f )
       
-print("Average monthly change in Revenue : $" + str(monthly_change))
+print("Average monthly change in Revenue : $" + str(monthly_change), file = f )
 
-print(f"Greatest Increase in Profits: {month_increase} (${profit_increase})")
+print(f"Greatest Increase in Profits: {month_increase} (${profit_increase})", file = f )
 
-print(f"Greatest Decrease in Profits: {month_decrease} (${profit_decrease})")
+print(f"Greatest Decrease in Profits: {month_decrease} (${profit_decrease})", file = f )
+
+f.close()
 
